@@ -1,0 +1,29 @@
+#nprogress .spinner {
+  top: 50%;
+  right: 50%;
+}
+
+#nprogress .spinner-icon {
+  width: 38px;
+  height: 38px;
+}
+
+.MuiTypography-root svg {
+  vertical-align: top;
+}
+
+a img {
+  vertical-align: top;
+}
+
+button[data-testid='Filter Table-iconButton']::after {
+  content: 'Filters';
+  padding-left: 4px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+h3 {
+  padding-top: 80px;
+  margin-top: -80px;
+}

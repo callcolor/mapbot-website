@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model map_info {
+  region_name         String      @db.VarChar
+  access_flags        Int
+  scan_id             Int
+  avatar_count        Int
+  map_info_created_at DateTime    @db.Timestamp(6)
+  access_flag         access_flag @relation(fields: [access_flags], references: [access_flags], onDelete: NoAction, onUpdate: NoAction, map: "map_info_access_flags_fk")
+  region              region      @relation(fields: [region_name], references: [region_name], onDelete: NoAction, onUpdate: NoAction, map: "map_info_region_name_fk")
+
+  @@id([region_name, scan_id], map: "map_info_pk")
+  @@index([scan_id])
+  @@index([map_info_created_at])
+}
+
+model region {
+  region_name         String     @id(map: "regions_pk") @db.VarChar
+  region_map_image    String?    @db.VarChar
+  region_x            Int
+  region_y            Int
+  scan_id             Int
+  region_created_at   DateTime   @default(now()) @db.Timestamp(6)
+  region_updated_at   DateTime   @default(now()) @db.Timestamp(6)
+  region_visited_at   DateTime   @default(dbgenerated("'2000-01-01 00:00:00'::timestamp without time zone")) @db.Timestamp(6)
+  region_owner        String?    @db.VarChar
+  region_cpu          Int?
+  region_cpu_ratio    Int?
+  region_colo_name    String?    @db.VarChar
+  region_product_sku  String?    @db.VarChar
+  region_product_name String?    @db.VarChar
+  estate_id           Int?
+  hard_max_agents     Int?
+  hard_max_objects    Int?
+  deny_age_unverified Boolean?
+  region_visited_by   String?    @db.VarChar
+  region_banned_at    DateTime?  @db.Timestamp(6)
+  region_access       Int?
+  deleted_at          DateTime?  @db.Timestamp(6)
+  estate_name         String?    @db.VarChar
+  region_ip           String?
+  region_port         Int?
+  channel_version     String?
+  map_info            map_info[]
+  parcel              parcel[]
+  owner               avatar?    @relation(fields: [region_owner], references: [avatar_uuid])
+}
+
+model access_flag {
+  access_flags Int        @id(map: "access_flags_pk")
+  access_name  String?    @db.VarChar
+  map_info     map_info[]
+}
+
+model parcel {
+  parcel_id          String   @id(map: "parcel_pk") @db.VarChar
+  region_name        String   @db.VarChar
+  parcel_area        Int?
+  parcel_description String?  @db.VarChar
+  parcel_group_id    String?  @db.VarChar
+  parcel_max_prims   Int?
+  parcel_name        String?  @db.VarChar
+  parcel_owner_id    String?  @db.VarChar
+  parcel_flags       BigInt?
+  parcel_sale_price  Int?
+  parcel_auction_id  Int?
+  parcel_snapshot    String?  @db.VarChar
+  parcel_created_at  DateTime @db.Timestamp(6)
+  parcel_updated_at  DateTime @db.Timestamp(6)
+  parcel_status      Int?
+  parcel_center_x    Int?
+  parcel_center_y    Int?
+  parcel_deleted     Boolean?
+  region             region   @relation(fields: [region_name], references: [region_name], onDelete: NoAction, onUpdate: NoAction, map: "parcel_region_fk")
+
+  @@index([region_name])
+}
+
+model continent {
+  continent_name  String
+  continent_min_x Int
+  continent_min_y Int
+  continent_max_x Int
+  continent_max_y Int
+
+  @@id([continent_name])
+}
+
+model avatar {
+  avatar_uuid           String   @id(map: "avatar_pk") @db.VarChar
+  first_name            String?  @db.VarChar
+  last_name             String?  @db.VarChar
+  avatar_created_at     DateTime @db.Timestamp(6)
+  avatar_updated_at     DateTime @db.Timestamp(6)
+  avatar_image          String?  @db.VarChar
+  avatar_fl_image       String?  @db.VarChar
+  avatar_partner        String?  @db.VarChar
+  avatar_description    String?  @db.VarChar
+  avatar_fl_description String?  @db.VarChar
+  avatar_rez_date       String?  @db.VarChar
+  avatar_flags          BigInt?
+  owned_regions         region[]
+
+  @@index([avatar_description])
+  @@index([avatar_updated_at])
+}
+
+model auction {
+  id          Int
+  region      String?
+  maturity    String?
+  size        Int?
+  location_x  Int?
+  location_y  Int?
+  winning_bid Int?
+  bidders     Int?
+  start_date  String?
+  end_date    String?
+  name        String?
+  type        String?
+  created_at  DateTime @db.Timestamp(6)
+  notes       String?
+
+  @@id([id])
+}
