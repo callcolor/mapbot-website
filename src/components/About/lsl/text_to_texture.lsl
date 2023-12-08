@@ -44,6 +44,7 @@ default {
     }
     
     listen(integer c, string n, key i, string m) {
+        llSetTimerEvent(60);
         request(m);
     }
     
@@ -52,9 +53,25 @@ default {
             URL = body;
         } else {
             llHTTPResponse(id, 200, "OK");
+            llSetTimerEvent(0);
+            llSetTimerEvent(3600);
             string requestId = llJsonGetValue(body, ["key"]);
             string uuid = llJsonGetValue(body, ["uuid"]);
             set(uuid);
+        }
+    }
+
+    changed(integer change) { 
+        if (change & CHANGED_TELEPORT) {
+            llResetScript();
+        }
+        if (change & CHANGED_REGION) 
+        {
+            llResetScript();
+        }
+        if (change & CHANGED_OWNER)
+        {
+            llResetScript();
         }
     }
     
