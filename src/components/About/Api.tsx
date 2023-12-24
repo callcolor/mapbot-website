@@ -286,7 +286,7 @@ socket.on('message', (data: any) => {
         </div>
       </Expand>
 
-      <Expand header="AI Chat Completion Service">
+      {/* <Expand header="AI Chat Completion Service">
         <div>Performs chat completion via a large language model.</div>
         <div>
           LSL example:
@@ -294,7 +294,7 @@ socket.on('message', (data: any) => {
             {chat_completion}
           </SyntaxHighlighter>
         </div>
-      </Expand>
+      </Expand> */}
     </>
   );
 };
