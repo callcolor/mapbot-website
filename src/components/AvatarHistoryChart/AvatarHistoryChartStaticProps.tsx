@@ -1,4 +1,4 @@
-import contextPromise from "../../../utils/contextPromise";
+import contextPromise from '../../../utils/contextPromise';
 
 const AvatarHistoryChartStaticProps = async (name: string) => {
   const { prisma, scan_id } = await contextPromise;
@@ -14,15 +14,12 @@ const AvatarHistoryChartStaticProps = async (name: string) => {
     from map_info
       where 1=1
         and scan_id <= ${scan_id}
-        and scan_id > ${scan_id - 100}
+        and scan_id > ${scan_id - 200}
         and region_name = ${name}
     order by scan_id desc
   `;
 
-  const avatar_count_data = map_info.map((mi) => [
-    mi.map_info_created_at * 1000,
-    mi.avatar_count,
-  ]);
+  const avatar_count_data = map_info.map((mi) => [mi.map_info_created_at * 1000, mi.avatar_count]);
 
   return {
     avatarHistoryChartStaticProps: {

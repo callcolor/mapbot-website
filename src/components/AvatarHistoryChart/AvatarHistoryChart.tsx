@@ -1,5 +1,5 @@
-import { formatDate } from "../../../utils/formatters";
-import { Line } from "../Chart";
+import { formatDate } from '../../../utils/formatters';
+import { Line } from '../Chart';
 
 const AvatarHistoryChart = (props: any) => {
   const { avatarHistoryChartStaticProps } = props;
@@ -10,9 +10,9 @@ const AvatarHistoryChart = (props: any) => {
       x: {
         title: {
           display: true,
-          text: "Time of visit",
+          text: 'Time of visit',
         },
-        type: "linear",
+        type: 'linear',
         ticks: {
           callback: (t: any) => {
             return formatDate(t);
@@ -22,7 +22,7 @@ const AvatarHistoryChart = (props: any) => {
       y: {
         title: {
           display: true,
-          text: "Avatars present in region",
+          text: 'Avatars present in region',
         },
       },
     },
@@ -41,8 +41,8 @@ const AvatarHistoryChart = (props: any) => {
     datasets: [
       {
         data: avatar_count_data,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
         tension: 0.3,
       },
     ],
