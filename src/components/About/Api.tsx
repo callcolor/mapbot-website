@@ -1,7 +1,7 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github as style } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Img from '../../../utils/Img';
-import { AccordionDetails, AccordionSummary, Typography } from '@mui/material';
+import { AccordionDetails, AccordionSummary, Box, Paper, Typography } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -50,6 +50,15 @@ const Api = () => {
   return (
     <>
       <h3>API</h3>
+      <div>
+        <Paper style={{ padding: '20px', margin: '20px 0' }}>
+          <h4>
+            Text-to-speech update: Linden Lab has asked us to either make this a Premium Plus only
+            service, or to discontinue the service. The text-to-speech service will be unavailable
+            while we consider all of our options.
+          </h4>
+        </Paper>
+      </div>
       <Expand header="Region Info">
         <p>GET: /static-api/regions/[region_name].json</p>
         <Code>
@@ -257,6 +266,13 @@ socket.on('message', (data: any) => {
 
       <Expand header="Text-to-Speech Service">
         <div>Creates and uploads an audio clip of the requested text being read.</div>
+        <Paper style={{ padding: '20px', margin: '20px 0' }}>
+          <h4>
+            Text-to-speech update: Linden Lab has asked us to either make this a Premium Plus only
+            service, or to discontinue the service. The text-to-speech service will be unavailable
+            while we consider all of our options.
+          </h4>
+        </Paper>
         <div>
           For a list of available voices see{' '}
           <a
@@ -278,6 +294,13 @@ socket.on('message', (data: any) => {
 
       <Expand header="Text-to-Texture Service">
         <div>Creates and uploads a texture containing the text requested.</div>
+        <Paper style={{ padding: '20px', margin: '20px 0' }}>
+          <h4>
+            Text-to-texture update: Linden Lab has asked us to either make this a Premium Plus only
+            service, or to discontinue the service. The text-to-texture service will be unavailable
+            while we consider all of our options.
+          </h4>
+        </Paper>
         <div>
           LSL example:
           <SyntaxHighlighter language="lsl" style={style}>
