@@ -68,7 +68,7 @@ const TopLandRentalStaticProps = async () => {
       on region_owner = a.avatar_uuid 
     where 1=1
       and a.last_name != 'Linden'
-      and region_count > 50
+      and region_count > 35
     group by 
       region_owner,
       first_name,
