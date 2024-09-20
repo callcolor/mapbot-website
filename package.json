@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "gen:static": "ts-node ./scripts/generate-static.ts",
+    "gen:static": "tsx ./scripts/generate-static.ts",
     "build": "next build",
     "export": "next export",
     "build:export": "npm run gen:static && next build && next export",
@@ -30,6 +30,7 @@
     "react-linkify": "^1.0.0-alpha",
     "react-syntax-highlighter": "^15.5.0",
     "socket.io-client": "^4.5.1",
+    "tsx": "^4.19.1",
     "turf": "^3.0.14"
   },
   "devDependencies": {
