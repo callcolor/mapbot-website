@@ -38,7 +38,7 @@ const historicTopAttachments = async () => {
   console.log(`delete old attachment data.`);
   await prisma.$queryRaw`
     delete from public.avatar_attachment
-    where avatar_attachment_scan_date < (NOW() - INTERVAL '1 YEAR')::DATE 
+    where avatar_attachment_scan_date < (NOW() - INTERVAL '16 DAY')::DATE 
     ;
   `;
 };
