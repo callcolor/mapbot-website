@@ -65,6 +65,16 @@ const Auctions = (props: any) => {
             '16384 - 32768',
             '32768 - 65536',
           ],
+          logic: (prop: string, filters: string[], row?: any[]) => {
+            if (!filters.length) return false;
+            for (const filter of filters) {
+              const low = Number(filter.split(' - ')[0]);
+              const high = Number(filter.split(' - ')[1]);
+              const value = Number(prop);
+              if (value >= low && value <= high) return false;
+            }
+            return true;
+          },
         },
         sort: true,
       },

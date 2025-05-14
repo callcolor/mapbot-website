@@ -1,7 +1,7 @@
 import { MUIDataTableColumnDef } from 'mui-datatables';
 import Link from 'next/link';
 import DataTable from '../DataTable';
-import { AbandonedLand } from './AbandonedLandStaticProps';
+import { type AbandonedLand } from './AbandonedLandStaticProps';
 
 const AbandonedLand = (props: any) => {
   const { abandonedLands } = props;

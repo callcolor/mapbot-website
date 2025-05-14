@@ -2,7 +2,7 @@ import { MUIDataTableColumnDef } from 'mui-datatables';
 import Link from 'next/link';
 import { formatInt } from '../../../utils/formatters';
 import DataTable from '../DataTable';
-import { SandboxParcels } from './SandboxParcelsStaticProps';
+import { type SandboxParcels } from './SandboxParcelsStaticProps';
 
 const SandboxParcels = (props: any) => {
   const { sandboxParcels } = props;
