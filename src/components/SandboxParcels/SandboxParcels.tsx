@@ -50,29 +50,9 @@ const SandboxParcels = (props: any) => {
     {
       name: 'Traffic',
       options: {
-        filter: true,
+        filter: false,
         sort: true,
         sortDescFirst: true,
-        filterOptions: {
-          names: [
-            '0 - 1024',
-            '1024 - 2048',
-            '2048 - 4096',
-            '4096 - 8192',
-            '8192 - 16384',
-            '16384 - 65536',
-          ],
-          logic: (prop: string, filters: string[], row?: any[]) => {
-            if (!filters.length) return false;
-            for (const filter of filters) {
-              const low = Number(filter.split(' - ')[0]);
-              const high = Number(filter.split(' - ')[1]);
-              const value = Number(prop);
-              if (value >= low && value <= high) return false;
-            }
-            return true;
-          },
-        },
       },
     },
     {
