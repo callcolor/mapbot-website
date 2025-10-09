@@ -44,3 +44,7 @@ public/static-api/
 NOTES.md
 deprecated/
 deploy.sh
+
+public/homepage.txt
+public/homepage.xml
+public/secondlife.xml
