@@ -29,13 +29,14 @@ const SandboxParcelsStaticProps = async () => {
       left join region r 
         on r.region_name = p.region_name 
       where 1=1 
+       	and p.parcel_updated_at > now() - '7 days'::interval
         and p.parcel_flags & 1 > 0 -- AllowFly 
         and p.parcel_flags & 2 > 0 -- AllowOtherScripts 
         and p.parcel_flags & 8 > 0 -- AllowLandmark 
         and p.parcel_flags & 64 > 0 -- CreateObjects 
         and p.parcel_flags & 134217728 > 0 -- AllowAPrimitiveEntry 
         and p.parcel_clean_time = 0
-          and p.parcel_deleted is not true 
+        and p.parcel_deleted is not true 
         and p.parcel_flags & 512 = 0 -- UseAccessList 
         and p.parcel_flags & 2048 = 0 -- UsePassList 
         and p.parcel_flags & 4194304 = 0 -- DenyAnonymous 
