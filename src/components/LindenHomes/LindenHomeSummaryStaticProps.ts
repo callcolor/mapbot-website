@@ -38,7 +38,7 @@ const LindenHomeSummaryStaticProps = async () => {
         and r.region_product_sku = '131'
         and r.deleted_at is null
         and p.parcel_deleted is null
-        and p.parcel_max_prims in (175, 351)
+        and p.parcel_max_prims in (468, 234, 937)
     ) q 
     group by continent_name
     order by continent_name

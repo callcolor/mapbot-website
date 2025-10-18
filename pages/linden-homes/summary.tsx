@@ -7,13 +7,13 @@ import LindenHomeSummaryStaticProps from '../../src/components/LindenHomes/Linde
 const WithStaticProps = (props: any) => {
   return (
     <TabLayout tabs={lindenHomesTabs} title="Linden Homes Summary">
-      <p></p>
+      {/* <p></p>
       <p>We are no longer able to provide this feature. For more information see:</p>
       <p>
         <a href="https://community.secondlife.com/forums/topic/435708-the-new-linden-homes-update-post/page/2/#comment-2576832">
           https://community.secondlife.com/forums/topic/435708-the-new-linden-homes-update-post/page/2/#comment-2576832
         </a>
-      </p>
+      </p> */}
       <LindenHomeSummary {...props} />
     </TabLayout>
   );
