@@ -49,6 +49,7 @@ const LindenHomesStaticProps = async () => {
       )
       and p.parcel_name in ('Linden Home ', 'Linden Home') 
       and p.parcel_deleted is null
+      and p.parcel_max_prims in (468, 234, 937)
     ;
   `;
 
