@@ -40,7 +40,8 @@ const TopLandRentalStaticProps = async () => {
           'eacde2da-67e7-48ba-9749-e5644486aa13',
           '9cc46bdd-7a82-4c99-8f4b-10ac27d6a229',
           '2b2f2f9a-6193-459a-ad46-357121ae1079',
-          'da6654ab-7df5-4a95-bd15-8feacb507512'
+          'da6654ab-7df5-4a95-bd15-8feacb507512',
+          '0e6a4f5c-a07d-4d77-825a-91d28902338f'
         ) then 'cd1d6682-c1dd-4211-9f29-d6f5cb964a96' 
         when region_owner in ( -- ZoHa
           'cdb35787-2f15-4ad9-854a-1d03e1fccb4c',
@@ -56,6 +57,10 @@ const TopLandRentalStaticProps = async () => {
           '85f58e6a-8bfa-49c6-b108-7bbf63796f69',
           '9a9ed404-be72-4ace-aca1-046ee22b44b9'
         ) then '85f58e6a-8bfa-49c6-b108-7bbf63796f69' 
+        when region_owner in ( -- Coral Estates
+          '49f69ab3-1137-4e3c-b1b9-45972126d22f',
+          '51163d48-904d-480e-8a4e-430fa0d5d15b'
+        ) then '49f69ab3-1137-4e3c-b1b9-45972126d22f'
         else region_owner end,
         count(*) as region_count
       from region 
@@ -68,7 +73,7 @@ const TopLandRentalStaticProps = async () => {
       on region_owner = a.avatar_uuid 
     where 1=1
       and a.last_name != 'Linden'
-      and region_count > 35
+      and region_count > 20
     group by 
       region_owner,
       first_name,
@@ -77,7 +82,7 @@ const TopLandRentalStaticProps = async () => {
       avatar_description,
       avatar_fl_description
     order by region_count desc
-    limit 100 
+    limit 200 
     ;
   `;
 

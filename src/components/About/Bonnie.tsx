@@ -10,7 +10,7 @@ const MapWithNoSSR = dynamic(() => import('../../../src/components/LeafletMap') 
 });
 
 const Bonnie = (props: any) => {
-  const [showContinents, setShowContinents] = useState(false);
+  const [showContinents, setShowContinents] = useState(true);
 
   return (
     <>
