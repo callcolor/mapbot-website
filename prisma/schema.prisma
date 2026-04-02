@@ -48,6 +48,7 @@ model region {
   region_ip           String?
   region_port         Int?
   channel_version     String?
+  water_height_mm     Int?
   map_info            map_info[]
   parcel              parcel[]
   owner               avatar?    @relation(fields: [region_owner], references: [avatar_uuid])

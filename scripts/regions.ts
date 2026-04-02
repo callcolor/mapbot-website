@@ -29,6 +29,7 @@ const regions = async () => {
       region_port: true,
       channel_version: true,
       region_updated_at: true,
+      water_height_mm: true,
       parcel: {
         select: {
           parcel_id: true,
