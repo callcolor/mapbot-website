@@ -39,6 +39,7 @@ const regions = async () => {
           parcel_name: true,
           parcel_status: true,
           parcel_updated_at: true,
+          parcel_snapshot: true,
         },
         where: {
           OR: [{ parcel_deleted: false }, { parcel_deleted: null }],
