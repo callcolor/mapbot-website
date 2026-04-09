@@ -94,51 +94,56 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { prisma } = await contextPromise;
   const name = params?.name as string;
+  try {
+    const { prisma } = await contextPromise;
 
-  const regionProps = await prisma.region.findUnique({
-    select: {
-      region_name: true,
-      region_product_name: true,
-      region_x: true,
-      region_y: true,
-      parcel: {
-        select: {
-          parcel_name: true,
-          parcel_area: true,
-        },
-        where: {
-          parcel_name: {
-            not: '',
+    const regionProps = await prisma.region.findUnique({
+      select: {
+        region_name: true,
+        region_product_name: true,
+        region_x: true,
+        region_y: true,
+        parcel: {
+          select: {
+            parcel_name: true,
+            parcel_area: true,
           },
-          parcel_deleted: null,
+          where: {
+            parcel_name: {
+              not: '',
+            },
+            parcel_deleted: null,
+          },
+          orderBy: {
+            parcel_area: 'desc',
+          },
+          take: 5,
         },
-        orderBy: {
-          parcel_area: 'desc',
+        owner: {
+          select: {
+            avatar_uuid: true,
+            first_name: true,
+            last_name: true,
+          },
         },
-        take: 5,
       },
-      owner: {
-        select: {
-          avatar_uuid: true,
-          first_name: true,
-          last_name: true,
-        },
+      where: {
+        region_name: name,
       },
-    },
-    where: {
-      region_name: name,
-    },
-  });
+    });
 
-  return {
-    props: {
-      regionProps,
-      ...(await AvatarHistoryChartStaticProps(name)),
-      ...(await AvatarDistributionChartStaticProps(name)),
-    },
-  };
+    return {
+      props: {
+        regionProps,
+        ...(await AvatarHistoryChartStaticProps(name)),
+        ...(await AvatarDistributionChartStaticProps(name)),
+      },
+    };
+  } catch (error) {
+    console.error(`\n[STATIC GEN ERROR] Region "${name}" failed:`, error);
+    throw error;
+  }
 };
 
 export default WithStaticProps;
